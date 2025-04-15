@@ -1,7 +1,6 @@
 from openai import OpenAI
 
-# API Key
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 historial = []
 
@@ -9,7 +8,7 @@ def es_problema_tecnico(pregunta):
     validacion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "Tu única tarea es responder con 'sí' si la siguiente pregunta describe un problema técnico que necesita solución, o 'no' si no lo es."},
+            {"role": "system", "content": "Tu tarea es evaluar si la pregunta se refiere a un tema técnico general. Si es así, responde 'sí'. Si no, responde 'no'. Por ejemplo, preguntas como '¿qué es un PCB?' o '¿cómo funciona una red eléctrica?' son técnicas."},
             {"role": "user", "content": pregunta}
         ]
     )
@@ -19,7 +18,7 @@ def es_problema_tecnico(pregunta):
 print("Asistente Técnico (escribí 'salir' para cerrar)")
 
 while True:
-    entrada = input("Vos: ")
+    entrada = input("User: ")
     if entrada.lower() in ["salir", "exit", "quit"]:
         print("Chau!")
         break
@@ -29,7 +28,7 @@ while True:
 
         respuesta = client.chat.completions.create(
             model="gpt-4o-mini",
-            messages=[{"role": "system", "content": "Sos un asistente técnico. Tu trabajo es ayudar a resolver problemas técnicos de forma precisa, clara y útil."}] + historial
+            messages=[{"role": "system", "content": "Sos un asistente técnico. Tu trabajo es ayudar a resolver problemas técnicos de forma precisa, clara y útil. Respuestas que no sean largas y no gastes muchos tokens"}] + historial
         )
 
         mensaje_asistente = respuesta.choices[0].message.content
