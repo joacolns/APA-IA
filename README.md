@@ -47,11 +47,12 @@ Ejemplo:
 }
 ```
 
-## Explicación del codigo
+# Explicación del codigo
 
 Este proyecto está dividido en dos partes:
 
-# openai_handler.py
+## openai_handler.py
+
 Es el archivo que maneja todo lo relacionado con la API de OpenAI:
 
 Carga el archivo JSON con los temas permitidos.
@@ -66,7 +67,7 @@ es_tema_valido(pregunta) → Filtra si se puede responder.
 
 obtener_respuesta(historial) → Consulta a GPT con el historial acumulado.
 
-# main.py
+## main.py
 
 Este archivo maneja la interfaz visual usando Streamlit:
 
