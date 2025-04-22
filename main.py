@@ -1,3 +1,5 @@
+#GUI
+
 import streamlit as st
 from openai_handler import es_tema_valido, obtener_respuesta, temas_permitidos
 
@@ -22,7 +24,6 @@ if enviar and user_input:
             "content": "Este asistente solo puede ayudarte con temas técnicos de hardware y sistemas operativos como Windows, Mac o Linux."
         })
 
-# Mostrar historial
 for mensaje in st.session_state.historial:
     if mensaje["role"] == "user":
         st.markdown(f"**👤 Usuario:** {mensaje['content']}")
