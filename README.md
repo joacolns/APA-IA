@@ -47,7 +47,7 @@ Ejemplo:
 }
 ```
 
-## Explicacion del codigo
+## Explicación del codigo
 
 Este proyecto está dividido en dos partes:
 
