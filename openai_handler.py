@@ -1,12 +1,15 @@
+#Carga de dependencias
 from openai import OpenAI
 import json
 import os
 from dotenv import load_dotenv
 
+#Carga de la API
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
 
+#Carga los temos del JSON
 def cargar_temas_permitidos():
     with open("temas_permitidos.json", "r") as f:
         data = json.load(f)
@@ -14,10 +17,12 @@ def cargar_temas_permitidos():
 
 temas_permitidos = cargar_temas_permitidos()
 
+#Funcion para validar si la pregunta está relacionada con los temas permitidos
 def es_tema_valido(pregunta):
     prompt = f"""
 Solo respondé 'sí' o 'no'. La siguiente pregunta está relacionada con uno de estos temas: {', '.join(temas_permitidos)}?
 
+#Validación y obtención de la respuesta
 Pregunta: {pregunta}
 """
     validacion = client.chat.completions.create(
